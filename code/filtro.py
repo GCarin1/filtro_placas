@@ -7,7 +7,7 @@ class Filtro:
         self.df = None
 
     def ler_convercao_dado_planilha(self):
-        self.df = pd.read_excel('dados\dados.xlsx')
+        self.df = pd.read_excel('dados\dados_filtro.xlsx')
 
         # Define os títulos das colunas que você deseja usar
         colunas_desejadas = ['Placa', 'Desempenho', 'Arquitetura', 'Ano de fabricação', 'Preço atual', 'TDP']
@@ -36,12 +36,12 @@ class Filtro:
     def resultado(self):
 
         # Verifica se a pasta 'planilhas' existe e cria se não existir
-        if not os.path.exists('planilhas'):
-            os.makedirs('planilhas')
+        if not os.path.exists('planilhas_filtro'):
+            os.makedirs('planilhas_filtro')
 
         # Gere o nome do arquivo com a data e hora atual
         agora = datetime.now()
-        nome_arquivo = f'planilhas/melhores_placas_{agora.strftime("%Y%m%d_%H%M%S")}.xlsx'
+        nome_arquivo = f'planilhas_filtro/{agora.strftime("%Y%m%d_%H%M%S")}.xlsx'
 
         # Salve a planilha no arquivo
         self.df.to_excel(nome_arquivo, index=False)
