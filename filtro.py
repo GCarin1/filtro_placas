@@ -7,7 +7,7 @@ class Filtro:
         self.df = None
 
     def ler_convercao_dado_planilha(self):
-        self.df = pd.read_excel('dados.xlsx')
+        self.df = pd.read_excel('dados\dados.xlsx')
 
         # Define os títulos das colunas que você deseja usar
         colunas_desejadas = ['Placa', 'Desempenho', 'Arquitetura', 'Ano de fabricação', 'Preço atual', 'TDP']
@@ -32,16 +32,9 @@ class Filtro:
         # Obtém as 10 melhores placas
         top_10_placas = self.df.head(10)
         self.df = top_10_placas
-
+ 
     def resultado(self):
-        # Exibe a lista das melhores placas de vídeo
-        print("Melhores placas de vídeo:")
-        print(self.df)
 
-        # Cria uma planilha com as melhores placas
-        self.df.to_excel('melhores_placas.xlsx', index=False)
-
-    def salvar_planilha(self):
         # Verifica se a pasta 'planilhas' existe e cria se não existir
         if not os.path.exists('planilhas'):
             os.makedirs('planilhas')
@@ -53,6 +46,10 @@ class Filtro:
         # Salve a planilha no arquivo
         self.df.to_excel(nome_arquivo, index=False)
 
+        # Exibe a lista das melhores placas de vídeo
+        print("Melhores placas de vídeo:")
+        print(self.df)
+
         print(f"Planilha salva em {nome_arquivo}")
 
     def execute(self):
@@ -60,4 +57,4 @@ class Filtro:
         self.calculo_planilha()
         
         self.resultado()
-        self.salvar_planilha()
+        #self.salvar_planilha()
